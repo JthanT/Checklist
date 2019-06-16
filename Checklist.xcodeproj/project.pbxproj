@@ -13,6 +13,9 @@
 		523E1EC022B6A37D008A14A5 /* Checklist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 523E1EBE22B6A37D008A14A5 /* Checklist.xcdatamodeld */; };
 		523E1EC222B6A37E008A14A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523E1EC122B6A37E008A14A5 /* Assets.xcassets */; };
 		523E1EC522B6A37E008A14A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523E1EC322B6A37E008A14A5 /* LaunchScreen.storyboard */; };
+		523E1ECF22B6ADCD008A14A5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E1ECE22B6ADCD008A14A5 /* PersistenceService.swift */; };
+		523E1ED222B6ADE6008A14A5 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E1ED022B6ADE6008A14A5 /* Task+CoreDataClass.swift */; };
+		523E1ED322B6ADE6008A14A5 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E1ED122B6ADE6008A14A5 /* Task+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		523E1EC122B6A37E008A14A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		523E1EC422B6A37E008A14A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		523E1EC622B6A37E008A14A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		523E1ECE22B6ADCD008A14A5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		523E1ED022B6ADE6008A14A5 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		523E1ED122B6ADE6008A14A5 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +64,14 @@
 			children = (
 				523E1EB722B6A37D008A14A5 /* AppDelegate.swift */,
 				523E1EB922B6A37D008A14A5 /* ViewController.swift */,
+				523E1ECE22B6ADCD008A14A5 /* PersistenceService.swift */,
+				523E1ED022B6ADE6008A14A5 /* Task+CoreDataClass.swift */,
+				523E1ED122B6ADE6008A14A5 /* Task+CoreDataProperties.swift */,
+				523E1EBE22B6A37D008A14A5 /* Checklist.xcdatamodeld */,
 				523E1EBB22B6A37D008A14A5 /* Main.storyboard */,
 				523E1EC122B6A37E008A14A5 /* Assets.xcassets */,
 				523E1EC322B6A37E008A14A5 /* LaunchScreen.storyboard */,
 				523E1EC622B6A37E008A14A5 /* Info.plist */,
-				523E1EBE22B6A37D008A14A5 /* Checklist.xcdatamodeld */,
 			);
 			path = Checklist;
 			sourceTree = "<group>";
@@ -139,7 +148,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				523E1EBA22B6A37D008A14A5 /* ViewController.swift in Sources */,
+				523E1ED222B6ADE6008A14A5 /* Task+CoreDataClass.swift in Sources */,
+				523E1ECF22B6ADCD008A14A5 /* PersistenceService.swift in Sources */,
 				523E1EC022B6A37D008A14A5 /* Checklist.xcdatamodeld in Sources */,
+				523E1ED322B6ADE6008A14A5 /* Task+CoreDataProperties.swift in Sources */,
 				523E1EB822B6A37D008A14A5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
