@@ -11,7 +11,7 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private var savedTasks = [Task]()
+    private var tasks = [Task]()
     private var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - barHeight))
         tableView.register(ChecklistHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
         tableView.sectionHeaderHeight = self.view.bounds.height * 0.1
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        tableView.register(TaskCell.self, forCellReuseIdentifier: "MyCell")
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
@@ -38,11 +38,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedTasks.count
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! TaskCell
+        cell.taskItemLabel.text = tasks[indexPath.row].task
+        
         return cell
     }
 }
@@ -99,3 +101,33 @@ class ChecklistHeader: UITableViewHeaderFooterView {
     }
  }
 
+class TaskCell: UITableViewCell {
+    
+    let taskItemLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubview(taskItemLabel)
+        setupViews()
+        
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
+    }
+    
+    func setupViews() {
+        taskItemLabel.topAnchor.constraint(equalToSystemSpacingBelow: self.topAnchor, multiplier: 1.5).isActive = true
+        taskItemLabel.leftAnchor.constraint(equalToSystemSpacingAfter: self.leftAnchor, multiplier: 3).isActive = true
+        taskItemLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
