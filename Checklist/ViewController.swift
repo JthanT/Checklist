@@ -17,11 +17,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - barHeight))
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
         
         let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
         do {
@@ -32,10 +31,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         }
         
-        
         self.tableView.register(ChecklistHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
         self.tableView.sectionHeaderHeight = self.view.bounds.height * 0.1
         self.tableView.register(TaskCell.self, forCellReuseIdentifier: "MyCell")
+        self.tableView.rowHeight = self.view.bounds.height * 0.08
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
@@ -58,6 +57,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.taskItemLabel.text = self.tasks[indexPath.row].task
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            PersistenceService.context.delete(self.tasks[indexPath.item])
+            self.tasks.remove(at: indexPath.item)
+            PersistenceService.saveContext()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     func addChecklistItem(checklistItem: String) {
@@ -85,6 +93,7 @@ class ChecklistHeader: UITableViewHeaderFooterView {
 
     let taskEntryButton: UIButton = {
         let button = UIButton()
+        button.setTitleColor(UIColor.black, for: .normal)
         button.setTitle(" + ", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -141,8 +150,7 @@ class TaskCell: UITableViewCell {
     }
     
     func setupViews() {
-        self.taskItemLabel.topAnchor.constraint(equalToSystemSpacingBelow: self.contentView.topAnchor, multiplier: 1.5).isActive = true
-//        taskItemLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        self.taskItemLabel.topAnchor.constraint(equalToSystemSpacingBelow: self.contentView.topAnchor, multiplier: 2).isActive = true
         self.taskItemLabel.leftAnchor.constraint(equalToSystemSpacingAfter: self.contentView.leftAnchor, multiplier: 1.5).isActive = true
         self.taskItemLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor).isActive = true
     }
